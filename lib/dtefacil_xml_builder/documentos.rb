@@ -1,6 +1,7 @@
 module DtefacilXmlBuilder
-	
+
    class FacturaElectronica
+
   		def set_descuento descuento
   			@descuento = descuento
   		end

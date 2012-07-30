@@ -15,5 +15,4 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
   gem.version       = DtefacilXmlBuilder::VERSION
   gem.add_runtime_dependency 'builder'
-  gem.add_runtime_dependency 'basic_active_model'
 end
