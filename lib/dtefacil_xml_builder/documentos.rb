@@ -1,3 +1,5 @@
+require 'buider'
+
 module DtefacilXmlBuilder
 
    class FacturaElectronica
