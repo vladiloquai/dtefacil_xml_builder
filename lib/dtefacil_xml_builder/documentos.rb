@@ -1,4 +1,4 @@
-require 'buider'
+require 'builder'
 
 module DtefacilXmlBuilder
 
@@ -7,7 +7,7 @@ module DtefacilXmlBuilder
         attr_accessor :descuento, :actividades_economicas, :receptor, :detalles
 
   		def render_xml
-            dtebuilder = XmlBuilder::DteBuilder.new
+            dtebuilder = DteBuilder.new
 
             xml = Builder::XmlMarkup.new(:target=>STDOUT, :indent=>2)
             xml.instruct!(:xml, version: "1.0", encoding: "ISO-8859-1")
@@ -25,7 +25,7 @@ module DtefacilXmlBuilder
         attr_accessor :referencia, :tipo, :receptor, :detalles
 
         def render_xml
-            dtebuilder = XmlBuilder::DteBuilder.new
+            dtebuilder = DteBuilder.new
 
             xml = Builder::XmlMarkup.new(:target=>STDOUT, :indent=>2)
             xml.instruct!(:xml, version: "1.0", encoding: "ISO-8859-1")
@@ -56,7 +56,7 @@ module DtefacilXmlBuilder
         attr_accessor :descuento, :actividades_economicas, :receptor, :detalles
      
         def render_xml
-            dtebuilder = XmlBuilder::DteBuilder.new
+            dtebuilder = DteBuilder.new
 
             xml = Builder::XmlMarkup.new(:target=>STDOUT, :indent=>2)
             xml.instruct!(:xml, version: "1.0", encoding: "ISO-8859-1")

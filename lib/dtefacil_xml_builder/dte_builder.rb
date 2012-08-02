@@ -39,7 +39,7 @@ class DteBuilder
                      }
                   end
 
-                  if detalle.is_exento
+                  if detalle.exento
                      det.observaciones{
                         |obs|
                         obs.exento
