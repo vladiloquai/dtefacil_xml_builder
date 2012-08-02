@@ -6,6 +6,21 @@ module DtefacilXmlBuilder
 
         attr_accessor :descuento, :actividades_economicas, :receptor, :detalles
 
+        def set_factura actividades_economicas, receptor, detalles
+            @actividades_economicas=actividades_economicas
+            @r= Receptor.new
+            @r.set_receptor receptor
+            @receptor= @r
+            @detalles = []
+
+            detalles.each do |detalle|
+                @d = Detalle.new
+                @d.set_detalle detalle
+                @detalles[@detalles.length]=@d
+            end
+        end
+            
+
   		def render_xml
             dtebuilder = DteBuilder.new
 
