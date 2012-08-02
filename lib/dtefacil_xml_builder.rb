@@ -1,3 +1,4 @@
+require "dtefacil_xml_builder/detalle"
 require "dtefacil_xml_builder/receptor"
 require "dtefacil_xml_builder/documentos"
 require "dtefacil_xml_builder/dte_builder"

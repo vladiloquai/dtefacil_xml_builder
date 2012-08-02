@@ -2,8 +2,7 @@ module DtefacilXmlBuilder
 	class Detalle
 		attr_accessor :nombre, :cantidad, :precio_unitario, :descuento, :unidad, :exento
 	
-
-		def set_detalle Detalle
+		def set_detalle detalle
 			@nombre 		 = detalle[:nombre]
 			@cantidad 		 = detalle[:cantidad]
 			@precio_unitario = detalle[:precio_unitario]
