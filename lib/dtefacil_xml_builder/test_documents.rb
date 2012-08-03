@@ -20,7 +20,7 @@ module DtefacilXmlBuilder
 			#d = DteBuilder.new
 			
 
-			response = RestClient.post 'https://ptoTicket:pt0T1ck3t@api.dtefacil.cl/1.2/documentos', f.render_xml, :content_type "Application/xml"
+			response = RestClient.post 'https://ptoTicket:pt0T1ck3t@api.dtefacil.cl/1.2/documentos', f.render_xml, :content_type => "application/xml"
 			puts response.headers[:location]
 
 		end
