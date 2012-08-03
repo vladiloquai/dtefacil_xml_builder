@@ -1,3 +1,5 @@
+require 'rest-client'
+
 module DtefacilXmlBuilder
 	class TestDocuments
 
@@ -7,20 +9,28 @@ module DtefacilXmlBuilder
 			d = Detalle.new
 
 			r.set_all_attr "15842089-9", "Vladimir Suarez", "Informaciones", "Pajaritos 345", "Maipu", "Santiago"
-			d.set_all_attr "Pelota", 4, 456, 0.1, "UF", true
-			f.actividades_economicas= [345, 546, 56767]
+			d.set_all_attr "Pelota", "asdfaf", 4, 456, 0.1, "UF", true
+			f.actividades_economicas= [324]
 			f.descuento= 0.2
 			f.receptor= r
 			f.detalles= [d]
-			f.render_xml
+			#body = f.render_xml
+			#response = RestClient.get 'https://ptoTicket:pt0T1ck3t@api.dtefacil.cl/1.2/usuarios/yo'
+			d = DteBuilder.new
+
+			#response = RestClient.post 'https://ptoTicket:pt0T1ck3t@api.dtefacil.cl/1.2/documentos', body, :content_type => "application/xml"
+			puts "inicio"
+			puts d.create_actividades_economicas "aasdfa"
+			puts "final"
 		end
 
 		def set_factura_electronica_with_hash
 			receptor = { :rut => "15842089-9", :razon_social => "Vladimir", :giro => "Computacion", :direccion => "Alameda", :comuna => "Santiago", :ciudad => "Satiago" }
-			detalles = [{:nombre => "Pelota", :cantidad => 3, :precio_unitario => 45, :descuento => 0.4, :unidad => "UF", :exento => true}] 
+			detalles = [{:nombre => "Pelota", :cantidad => 3, :precio_unitario => 45}] 
 			f = FacturaElectronica.new
-			f.set_factura [345, 345, 345], receptor, detalles
-			f.render_xml
+			f.set_factura [324], receptor, detalles
+			body = f.render_xml
+
 		end
 
 	end
