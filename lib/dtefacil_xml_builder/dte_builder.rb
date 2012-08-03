@@ -12,12 +12,6 @@ class DteBuilder
          #builder.actividadEconomica "asdfas"  
       end
 
-      def iterate lista
-         puts "adsfasd"
-         #lista.each do |el|
-         #  puts el + " hola"
-         #end
-      end
 
       def create_detalles detalles, descuento
          builder = Builder::XmlMarkup.new

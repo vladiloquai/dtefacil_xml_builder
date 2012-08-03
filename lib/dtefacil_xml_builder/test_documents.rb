@@ -9,19 +9,20 @@ module DtefacilXmlBuilder
 			d = Detalle.new
 
 			r.set_all_attr "15842089-9", "Vladimir Suarez", "Informaciones", "Pajaritos 345", "Maipu", "Santiago"
-			d.set_all_attr "Pelota", "asdfaf", 4, 456, 0.1, "UF", true
+			d.set_all_attr "CompuGay", "asdfaf", 4, 456, 0.1, "UF", true
 			f.actividades_economicas= [324]
 			f.descuento= 0.2
 			f.receptor= r
 			f.detalles= [d]
 			#body = f.render_xml
+			#f.render_xml
 			#response = RestClient.get 'https://ptoTicket:pt0T1ck3t@api.dtefacil.cl/1.2/usuarios/yo'
-			d = DteBuilder.new
+			#d = DteBuilder.new
+			
 
-			#response = RestClient.post 'https://ptoTicket:pt0T1ck3t@api.dtefacil.cl/1.2/documentos', body, :content_type => "application/xml"
-			puts "inicio"
-			puts d.create_actividades_economicas "aasdfa"
-			puts "final"
+			response = RestClient.post 'https://ptoTicket:pt0T1ck3t@api.dtefacil.cl/1.2/documentos', f.render_xml, :content_type "Application/xml"
+			puts response.headers[:location]
+
 		end
 
 		def set_factura_electronica_with_hash
