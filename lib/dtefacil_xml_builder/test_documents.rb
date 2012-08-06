@@ -17,11 +17,17 @@ module DtefacilXmlBuilder
 			#body = f.render_xml
 			#f.render_xml
 			#response = RestClient.get 'https://ptoTicket:pt0T1ck3t@api.dtefacil.cl/1.2/usuarios/yo'
-			#d = DteBuilder.new
+			db = DteBuilder.new
+			@emisor= db.create_emisor "emisor48"
+			#@emisor = "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?><usuario tipo=\"emisor\" xmlns=\"http://dtefacil.cl/1.2\"><nombre>emisor4</nombre><clave>1234567</clave><sucursal><nombre>segunda</nombre><codigo>4</codigo></sucursal></usuario>"
 			
+			#delete_url= 'https://ptoTicket:pt0T1ck3t@api.dtefacil.cl/1.2/usuarios/emisores/dupzglfpvqbfx7mq7ownb5nrz7m?purgar=true'
 
-			response = RestClient.post 'https://ptoTicket:pt0T1ck3t@api.dtefacil.cl/1.2/documentos', f.render_xml, :content_type => "application/xml"
-			puts response.headers[:location]
+			#response = RestClient.post , @emisor, content_type: "application/xml"
+			#response = RestClient.delete(delete_url)
+			response = RestClient.post "https://api.dtefacil.cl/1.2/usuarios/emisores/", @emisor, {content_type: "application/xml", authorization: "Basic cHRvVGlja2V0OnB0MFQxY2szdA=="}
+			puts response
+			#puts response.headers[:location]
 
 		end
 
