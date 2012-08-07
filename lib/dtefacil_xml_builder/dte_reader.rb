@@ -51,7 +51,31 @@ module DtefacilXmlBuilder
 
 		def collection= xml
 			ref = XmlSimple.xml_in xml
-			puts ref.inspect			
+
+			col = Collection.new
+			d   = DocumentoElectronico.new
+			docs=[]
+
+			col.pag   = ref["pag"]
+			col.tPag  = ref["tPag"]
+			col.total = ref["total"]
+			col.pags  = ref["pags"]
+
+			ref["documento"].each do |doc|
+				d.id= doc["id"]
+				d.url= doc["url"]
+				d.fchEmis= doc["fchEmis"]
+				d.rutRecep= doc["rutRecep"]
+				d.rutEmisor= doc["rutEmisor"]
+				d.tipo= doc["tipo"]
+				d.folio= doc["folio"]
+				d.mntTotal= doc["mntTotal"]
+
+				docs[docs.length]=d
+			end
+
+			col.documentos= docs
+			@collection= col						
 		end
 		
 	end	
