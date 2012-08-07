@@ -1,3 +1,4 @@
+require "dtefacil_xml_builder/collection"
 require "dtefacil_xml_builder/factura_exenta_electronica"
 require "dtefacil_xml_builder/nota_de_credito_electronica"
 require "dtefacil_xml_builder/factura_electronica"
