@@ -5,8 +5,8 @@ module DtefacilXmlBuilder
 			receptor = { :rut => "15842089-9", :razon_social => "Vladimir", :giro => "Computacion", :direccion => "Alameda", :comuna => "Santiago", :ciudad => "Satiago" }
 			detalles = [{:nombre => "Pelota", :cantidad => 3, :precio_unitario => 45}] 
 			f = FacturaElectronica.new
-			f.set= [324], receptor, detalles
-			body = f.render_xml
+			f.set_invoice [324], receptor, detalles
+			f.render_xml
 		end
 
 		def read_dte

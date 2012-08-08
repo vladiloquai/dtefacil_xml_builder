@@ -6,7 +6,7 @@ module DtefacilXmlBuilder
 
         attr_accessor :descuento, :actividades_economicas, :receptor, :detalles
 
-        def set= actividades_economicas, receptor, detalles
+        def set_invoice actividades_economicas, receptor, detalles
             @actividades_economicas=actividades_economicas
             @r= Receptor.new
             @r.set_receptor receptor
