@@ -21,5 +21,13 @@ module DtefacilXmlBuilder
 			reader.collection= response.body
 		end
 
+		def met1
+			puts "holaaaaaaaaa"
+		end
+
+		def met2
+			puts "adsfasdfasdfasdf"
+		end
+
 	end
 end
