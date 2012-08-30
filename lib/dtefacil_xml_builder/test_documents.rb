@@ -21,5 +21,11 @@ module DtefacilXmlBuilder
 			reader = DteCollectionReader.new
 			reader.collection= response.body
 		end
+
+		def read_errores
+			response = RestClient.get "https://api.dtefacil.cl/1.2/documentos"
+			e = Errores.new
+			e.errores= response.body
+		end
 	end
 end
