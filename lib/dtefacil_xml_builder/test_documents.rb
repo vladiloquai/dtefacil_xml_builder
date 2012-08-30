@@ -13,21 +13,13 @@ module DtefacilXmlBuilder
 			response = RestClient.get "https://acid:WhXdrDBJ@api.dtefacil.cl/1.2/documentos/d3g3zty5qybgx3e5dcqls22iuwy"
 			reader = DteReader.new
 			reader.dte= response.body
+			reader.monto
 		end
 
 		def read_collection
 			response = RestClient.get "https://ptoTicket:pt0T1ck3t@api.dtefacil.cl/1.2/documentos"
-			reader = DteReader.new
+			reader = DteCollectionReader.new
 			reader.collection= response.body
 		end
-
-		def met1
-			puts "holaaaaaaaaa"
-		end
-
-		def met2
-			puts "adsfasdfasdfasdf"
-		end
-
 	end
 end

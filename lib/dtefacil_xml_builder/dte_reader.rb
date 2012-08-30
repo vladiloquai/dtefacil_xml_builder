@@ -3,15 +3,17 @@ require 'xmlsimple'
 
 module DtefacilXmlBuilder
 	class DteReader
-		attr_accessor :receptor, :detalles, :folio, :tipo, :folio, :collection 
+		attr_accessor :receptor, :detalles, :folio, :tipo, :folio, :monto 
 
 		def dte= xml 
 		 	ref = XmlSimple.xml_in xml
 		 	id_doc_hash = ref['Documento'].map{ |i| i['Encabezado'].map{|f| f['IdDoc']}}.flatten
 		 	receptor_hash = ref['Documento'].map{ |i| i['Encabezado'].map{|f| f['Receptor']}}.flatten
+		 	totales_hash = ref['Documento'].map{ |i| i['Encabezado'].map{|f| f['Totales']}}.flatten
 		 	
 		 	@tipo = id_doc_hash.first["TipoDTE"].first
 		 	@folio = id_doc_hash.first["Folio"].first
+		 	@monto = totales_hash.first["MntTotal"].first  
 
 		 	r = Receptor.new 
 		 	r.rut= 			receptor_hash.first["RUTRecep"].first 
@@ -22,8 +24,8 @@ module DtefacilXmlBuilder
 		 	r.ciudad= 		receptor_hash.first["CiudadRecep"].first
 		 	@receptor=r
 		 	@detalles=[]
-
 		 	detalles_hash_array= ref['Documento'].map{ |d| d['Detalle']}.flatten
+
 
 		 	detalles_hash_array.each do |det|
 		 		d = Detalle.new	
@@ -31,23 +33,33 @@ module DtefacilXmlBuilder
 		 		d.numero_linea=det["NroLinDet"].first
 		 		d.cantidad=det["QtyItem"].first
 		 		d.precio_unitario=det["PrcItem"].first
-		 		d.monto= det["MontoItems"].first
+		 		d.monto_total= det["MontoItem"].first
 
-		 		if det["DescuentoMonto"].first
+		 		if det["DescuentoMonto"]
 		 			d.descuento= det["DescuentoMonto"].first 	
 		 		end
 
-		 		if det["IndExe"].first
-		 			d.exento= true	
+		 		if det["IndExe"]
+		 			d.exento= true
+		 		else
+		 			d.exento= false	
 		 		end
 
-		 		if det["UnmdItem"].first 
+		 		if det["UnmdItem"] 
 		 			d.unidad= det["UnmdItem"].first			 			
 		 		end
 
 		 		@detalles[@detalles.length]=d
-		 	end 	
-		end
+		 	end
+
+ 	
+		end		
+	end	
+
+
+
+	class DteCollectionReader
+		attr_accessor :collection
 
 		def collection= xml
 			ref = XmlSimple.xml_in xml
@@ -77,6 +89,5 @@ module DtefacilXmlBuilder
 			col.documentos= docs
 			@collection= col						
 		end
-		
-	end	
+	end
 end
