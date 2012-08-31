@@ -3,7 +3,7 @@ require 'xmlsimple'
 
 module DtefacilXmlBuilder
 	class DteReader
-		attr_accessor :receptor, :detalles, :folio, :tipo, :folio, :monto 
+		attr_accessor :receptor, :detalles, :folio, :tipo, :folio, :monto, :fecha_emision 
 
 		def dte= xml 
 		 	ref = XmlSimple.xml_in xml
@@ -13,7 +13,8 @@ module DtefacilXmlBuilder
 		 	
 		 	@tipo = id_doc_hash.first["TipoDTE"].first
 		 	@folio = id_doc_hash.first["Folio"].first
-		 	@monto = totales_hash.first["MntTotal"].first  
+		 	@monto = totales_hash.first["MntTotal"].first
+		 	@fecha_emision= id_doc_hash.first["FchEmis"].first  
 
 		 	r = Receptor.new 
 		 	r.rut= 			receptor_hash.first["RUTRecep"].first 
