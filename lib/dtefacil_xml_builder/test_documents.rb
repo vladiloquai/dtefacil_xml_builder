@@ -23,9 +23,15 @@ module DtefacilXmlBuilder
 		end
 
 		def read_errores
-			response = RestClient.get "https://api.dtefacil.cl/1.2/documentos"
-			e = Errores.new
-			e.errores= response.body
+			begin
+				response = RestClient.get "https://api.dtefacil.cl/1.2/documentos"	
+			rescue Exception => e
+				er = Errores.new
+				er.errores= e.response
+				er.error				
+			end
+			
+			
 		end
 	end
 end
