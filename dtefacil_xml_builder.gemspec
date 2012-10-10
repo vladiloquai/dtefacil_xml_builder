@@ -16,5 +16,5 @@ Gem::Specification.new do |gem|
   gem.version       = DtefacilXmlBuilder::VERSION
   gem.add_runtime_dependency 'builder'
   gem.add_runtime_dependency 'rest-client'
-  gem.add_runtime_dependency 'xml-simple'
+  #gem.add_runtime_dependency 'xml-simple'
 end
